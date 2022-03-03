@@ -1,39 +1,93 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { getUser, getActivity, getPerformance, getAverageSessions } from '../../service';
+import styled from "styled-components";
 
+import {
+  getUser,
+  getActivity,
+  getPerformance,
+  getAverageSessions,
+} from "../../service";
 
-
+import UserMetrics from "../../Components/Charts/UserMetrics";
+import UserActivity from "../../Components/Charts/UserActivity";
+import UserWelcome from "../../Components/Charts/UserWelcome";
+import UserAverageSessions from "../../Components/Charts/UserAverageSessions";
+import UserPerformance from "../../Components/Charts/UserPerformance";
+import UserScore from "../../Components/Charts/UserScore";
 
 const Dashboard = () => {
+  let { id } = useParams();
 
-    let {id} = useParams();
+  const [userInfosData, setUserInfosData] = useState({});
+  const [userActivityData, setUserActivityData] = useState({});
+  const [userAverageSessionsData, setUserAverageSessionsData] = useState({});
+  const [userPerformanceData, setUserPerformanceData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
-    const [dataMocked, setDataMocked] = useState({})
+  useEffect(() => {
+    const getUserData = async () => {
+      const getUserOBJ = await getUser(parseInt(id));
+      const getActivityOBJ = await getActivity(parseInt(id));
+      const getAverageSessionsOBJ = await getAverageSessions(parseInt(id));
+      const getPerformanceOBJ = await getPerformance(parseInt(id));
 
-    const [userInfosData, setUserInfosData] = useState({})
-    const [userActivityData, setUserActivityData] = useState({})
-    const [userAverageSessionsData, setUserAverageSessionsData] = useState({})
-    const [userPerformanceData, setUserPerformanceData] = useState({})
-    const [isLoaded, setIsLoaded] = useState(false)
+      setUserInfosData(getUserOBJ);
+      setUserActivityData(getActivityOBJ);
+      setUserAverageSessionsData(getAverageSessionsOBJ);
+      setUserPerformanceData(getPerformanceOBJ);
 
+      setIsLoaded(true);
 
-    Promise.all([getUser(parseInt(id)), getActivity(parseInt(id)), getAverageSessions(parseInt(id)), getPerformance(parseInt(id))]).then((datas) => {
-        setIsLoaded(true)
-        setUserInfosData(datas[0])
-        setUserActivityData(datas[1])
-        setUserAverageSessionsData(datas[2])
-        setUserPerformanceData(datas[3])
-    })
+      //! besoin de clean ?
+    };
+    getUserData();
+  }, [id]);
 
+  console.log("user infos", userInfosData.keyData);
+  console.log("Activity", userActivityData);
+  console.log("Average Sessions", userAverageSessionsData);
+  console.log("Performance", userPerformanceData);
 
-    return (
-        <div>
-            <h1>RAR</h1>
-
-        </div>
-    );
+  return (
+    <Main>
+      {isLoaded ? (
+        <>
+          <UserWelcome dataName={userInfosData.userInfos.firstName} />
+          <ChartsContainer>
+            <Charts>
+              <UserActivity dataActivity={userActivityData} />
+              <UserAverageSessions dataSessions={userAverageSessionsData.sessions} />
+              <UserPerformance dataPerformance={userPerformanceData} />
+              <UserScore dataScore={userInfosData.todayScore} />
+            </Charts>
+            <UserMetrics dataMetrics={userInfosData.keyData} />
+          </ChartsContainer>
+        </>
+      ) : (
+        <div>Chargement des données en cours...</div>
+      )}
+    </Main>
+  );
 };
+
+const Main = styled.section`
+  width: 100%;
+  padding: 0 0 0 107px;
+`;
+
+const ChartsContainer = styled.article`
+  min-height: 610px;
+  display: flex;
+  margin-top: 77px;
+`;
+
+const Charts = styled.div`
+  width: 835px;
+  margin: 0 30px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default Dashboard;

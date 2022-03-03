@@ -1,4 +1,4 @@
 const configMockedData = {
-	mockedData: false,
+	mockedData: true,
 };
 export default configMockedData;
