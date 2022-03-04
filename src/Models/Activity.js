@@ -1,7 +1,7 @@
 class Activity {
-    constructor(id, session) {
-        this.userId = id
-        this.sessions = session
-    }
+  constructor({ id, sessions }) {
+    this.userId = id;
+    this.sessions = sessions;
+  }
 }
-export default Activity
+export default Activity;

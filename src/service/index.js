@@ -5,7 +5,7 @@ import SessionAverage from "../Models/SessionAverage";
 import Performance from "../Models/Performance";
 
 //MOCKED DATA + CONFIG
-import configMockedData from "../mockedData/configMockedData";
+import {mockedData} from "../mockedData/configMockedData";
 import {
   users,
   activities,
@@ -13,8 +13,12 @@ import {
   performances,
 } from "../mockedData/data";
 
+
 //DESTRUCTURING MOCKED DATA
-const { mockedData } = configMockedData;
+//const { mockedData } = configMockedData;
+
+
+console.log('Mocked DATA is', mockedData);
 
 //GET INDEX MOCKED DATA
 const getIndexMockedData = (id) => {
@@ -22,66 +26,61 @@ const getIndexMockedData = (id) => {
   return userIndex;
 };
 
-
 //SERVICES
 
 export const getUser = (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
-    return users[i];
+    // return users[i];
+    return new Promise((resolve) => {
+      resolve(new User(users[i]));
+    });
   } else {
     return fetch(`http://localhost:3000/user/${id}`)
       .then((res) => res.json())
-      .then((user) => {
-        return new User(
-          user.data.id,
-          user.data.keyData,
-          user.data.todayScore || user.data.score,
-          user.data.userInfos
-        );
-      })
-      .catch((error) => console.error("Get User f(x)", error));
+      .then((user) => new User(user.data))
+      .catch((error) => console.error("Get User f(x)", error))
   }
 };
 
 export const getActivity = (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
-    return activities[i];
+    return new Promise((resolve) => {
+      resolve(new Activity(activities[i]));
+    });
   } else {
     return fetch(`http://localhost:3000/user/${id}/activity`)
       .then((res) => res.json())
-      .then((user) => {
-        new Activity(user.data.userId, user.data.sessions);
-      })
-      .catch((error) => console.error("Get Activity f(x)", error));
+      .then((user) => new Activity(user.data))
+      .catch((error) => console.error("Get Activity f(x)", error))
   }
 };
 
 export const getPerformance = (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
-    return performances[i];
+    return new Promise((resolve) => {
+      resolve(new Performance(performances[i]));
+    });
   } else {
     return fetch(`http://localhost:3000/user/${id}/performance`)
       .then((res) => res.json())
-      .then((user) => {
-        new Performance(user.data.userId, user.data.kind, user.data.data);
-      })
-      .catch((error) => console.error("Get Performance f(x)", error));
+      .then((user) => new Performance(user.data))
+      .catch((error) => console.error("Get Performance f(x)", error))
   }
 };
 
 export const getAverageSessions = (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
-    return sessionsList[i];
+    return new Promise((resolve) => {
+      resolve(new SessionAverage(sessionsList[i]));
+    });
   } else {
     return fetch(`http://localhost:3000/user/${id}/average-sessions`)
       .then((res) => res.json())
-      .then((user) => {
-        new SessionAverage(user.data.userId, user.data.sessions);
-      })
-      .catch((error) => console.error("Get Average Sessions f(x)", error));
+      .then((user) => new SessionAverage(user.data))
+      .catch((error) => console.error("Get Average Sessions f(x)", error))
   }
 };

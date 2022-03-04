@@ -45,10 +45,10 @@ const Dashboard = () => {
     getUserData();
   }, [id]);
 
-  console.log("user infos", userInfosData.keyData);
-  console.log("Activity", userActivityData);
-  console.log("Average Sessions", userAverageSessionsData);
-  console.log("Performance", userPerformanceData);
+  // console.log("user infos", userInfosData.keyData);
+  // console.log("Activity", userActivityData);
+  // console.log("Average Sessions", userAverageSessionsData);
+  // console.log("Performance", userPerformanceData);
 
   return (
     <Main>
@@ -58,7 +58,9 @@ const Dashboard = () => {
           <ChartsContainer>
             <Charts>
               <UserActivity dataActivity={userActivityData} />
-              <UserAverageSessions dataSessions={userAverageSessionsData.sessions} />
+              <UserAverageSessions
+                dataSessions={userAverageSessionsData.sessions}
+              />
               <UserPerformance dataPerformance={userPerformanceData} />
               <UserScore dataScore={userInfosData.todayScore} />
             </Charts>
@@ -74,7 +76,7 @@ const Dashboard = () => {
 
 const Main = styled.section`
   width: 100%;
-  padding: 0 0 0 107px;
+  padding: 70px 0 0 107px;
 `;
 
 const ChartsContainer = styled.article`

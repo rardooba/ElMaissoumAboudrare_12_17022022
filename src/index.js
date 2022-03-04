@@ -7,6 +7,7 @@ import App from "./App";
 import Dashboard from "./Pages/Dashboard";
 import NotFound404 from "./Pages/404";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

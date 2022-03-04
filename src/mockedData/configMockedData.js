@@ -1,4 +1,4 @@
-const configMockedData = {
-	mockedData: true,
+const stringTOboolean = (env) => {
+  return env === "true" ? true : false;
 };
-export default configMockedData;
+export const mockedData = stringTOboolean(process.env.REACT_APP_MOCK_CONFIG);

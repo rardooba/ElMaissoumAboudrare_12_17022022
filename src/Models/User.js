@@ -1,9 +1,9 @@
-class User{
-    constructor(id, userInfos, todayScore, KeyData ) {
-        this.id = id
-        this.userInfos = userInfos
-        this.todayScore = todayScore
-        this.KeyData = KeyData
-    }
+class User {
+  constructor({ id, userInfos, score, todayScore, keyData }) {
+    this.id = id;
+    this.userInfos = userInfos;
+    this.todayScore = todayScore || score;
+    this.keyData = keyData;
+  }
 }
-export default User
+export default User;

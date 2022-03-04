@@ -18,7 +18,6 @@ function App() {
 
 const Main = styled.main`
   display: flex;
-  align-items: center;
   height: 100%;
 `;
 

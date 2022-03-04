@@ -1,5 +1,5 @@
 class Performance {
-    constructor(userId, kind, data) {
+    constructor({userId, kind, data}) {
         this.id = userId
         this.kind = kind
         this.data = data
