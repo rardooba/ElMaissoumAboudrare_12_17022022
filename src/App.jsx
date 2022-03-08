@@ -1,5 +1,5 @@
 import Header from "./Components/Ui/Header";
-import AsideRight from "./Components/Ui/AsideRight";
+import AsideLeft from "./Components/Ui/AsideNav/AsideLeft";
 
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <Main>
-        <AsideRight/>
+        <AsideLeft/>
         <Outlet />
       </Main>
     </>

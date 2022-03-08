@@ -1,3 +1,7 @@
+/**
+ * Data use for local testing
+ */
+
 const users = [
   {
     id: 12,

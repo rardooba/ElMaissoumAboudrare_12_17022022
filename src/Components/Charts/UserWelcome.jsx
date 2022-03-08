@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import propTypes from 'prop-types';
+
+
 const UserWelcome = ({dataName}) => {
   return (
     <Header>
@@ -28,4 +31,7 @@ const Header = styled.header`
   }
 `;
 
+UserWelcome.propTypes = {
+  dataName: propTypes.string,
+}
 export default UserWelcome;

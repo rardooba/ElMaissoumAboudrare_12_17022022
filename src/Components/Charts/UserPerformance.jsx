@@ -1,8 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import propTypes from 'prop-types';
+
 import { Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 
+/**
+ * This componnent will render the Preformance graph
+ * @param {Object} params
+ * @param {Object} params.kind
+ * @param {Array} params.data
+ * @returns {JSX}
+ */
 const UserPerformance = ({dataPerformance}) => {
 
 
@@ -42,5 +51,9 @@ const Figure = styled.figure`
 	width: 258px;
 	margin: 0 auto;
 `;
+
+UserPerformance.propTypes = {
+	dataPerformance: propTypes.object,
+};
 
 export default UserPerformance;

@@ -1,11 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import propTypes from 'prop-types';
+
 import Energy from '../../assets/img/energy.svg';
 import Protein from '../../assets/img/chicken.svg';
 import Glucid from '../../assets/img/apple.svg';
 import Lipid from '../../assets/img/cheeseburger.svg';
 
+/**
+ * This will display each statistic component on the right side with the left icon/color
+ * @param {Object} params
+ * @param {String} params.type
+ * @param {Number} params.val
+ * @returns {JSX}
+ */
 const SingleStat = ({type, value}) => {
 
     const keyData = () => {
@@ -61,7 +70,6 @@ const Icon = styled.div`
 	height: 60px;
 	width: 60px;
 	border-radius: 6px;
-	margin-right: 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -73,5 +81,11 @@ const Icon = styled.div`
 		width: 1.5vw;
 	}
 `;
+
+SingleStat.propTypes = {
+	type: propTypes.string,
+	value: propTypes.number,
+};
+
 
 export default SingleStat;

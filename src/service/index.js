@@ -28,7 +28,7 @@ const getIndexMockedData = (id) => {
 
 //SERVICES
 
-export const getUser = (id) => {
+export const getUser = async (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
     // return users[i];
@@ -43,7 +43,12 @@ export const getUser = (id) => {
   }
 };
 
-export const getActivity = (id) => {
+/**
+ * Sets the Activity here
+ * @param {*} id 
+ * @returns 
+ */
+export const getActivity = async (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
     return new Promise((resolve) => {
@@ -57,7 +62,12 @@ export const getActivity = (id) => {
   }
 };
 
-export const getPerformance = (id) => {
+/**
+ * Sets the Performance here
+ * @param {*} id 
+ * @returns 
+ */
+export const getPerformance = async (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
     return new Promise((resolve) => {
@@ -71,7 +81,12 @@ export const getPerformance = (id) => {
   }
 };
 
-export const getAverageSessions = (id) => {
+/**
+ * Sets the Average Sessions here
+ * @param {*} id 
+ * @returns 
+ */
+export const getAverageSessions = async (id) => {
   if (mockedData) {
     const i = getIndexMockedData(id);
     return new Promise((resolve) => {

@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import propTypes from 'prop-types';
+
 import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from "recharts";
 
+/**
+ * This will display the user score graph
+ * @param {Object} params
+ * @param {Number} params.todayScore
+ * @returns {JSX}
+ */
 const UserScore = ({dataScore}) => {
   return (
     <Figure>
@@ -48,6 +56,13 @@ const UserScore = ({dataScore}) => {
   );
 };
 
+/**
+ * Show custom label on the graph
+ * @param {Object} params
+ * @param {Boolean} params.active
+ * @param {Array} params.payload
+ * @return {JSX || null}
+ */
 const CustomLegend = ({ payload }) => (
   <LegendCustom>
     <h2>{payload[0].payload.value * 100}%</h2>
@@ -105,5 +120,14 @@ const Desc = styled.div`
   color: rgb(116, 121, 140);
   font-size: 14px;
 `;
+
+UserScore.propTypes = {
+	dataScore: propTypes.number,
+};
+
+CustomLegend.propTypes = {
+	payload: propTypes.array,
+};
+
 
 export default UserScore;

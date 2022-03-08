@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import propTypes from 'prop-types';
+
 import {
   BarChart,
   Bar,
@@ -11,6 +13,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+
+/**
+ * This will render the activity bar chart
+ * @param {Object} params
+ * @param {Array} params.sessions
+ * @returns {JSX}
+ */
 const UserActivity = ({dataActivity}) => {
   return (
     <Figure>
@@ -74,6 +83,13 @@ const UserActivity = ({dataActivity}) => {
   );
 };
 
+/**
+ * Show custom label on the graph
+ * @param {Object} params
+ * @param {Boolean} params.active
+ * @param {Array} params.payload
+ * @return {JSX || null}
+ */
 const CustomTooltip = ({ active, payload }) =>
   active ? (
     <TooltipBlock>
@@ -148,5 +164,15 @@ const TooltipBlock = styled.div`
     margin-bottom: 10px;
   }
 `;
+
+UserActivity.propTypes = {
+	dataActivity: propTypes.object,
+};
+
+CustomTooltip.propTypes = {
+	active: propTypes.bool,
+	payload: propTypes.array,
+};
+
 
 export default UserActivity;

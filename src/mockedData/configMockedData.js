@@ -1,3 +1,8 @@
+/**
+ * Configure mocked Data here
+ * @param {*} env 
+ * @returns 
+ */
 const stringTOboolean = (env) => {
   return env === "true" ? true : false;
 };

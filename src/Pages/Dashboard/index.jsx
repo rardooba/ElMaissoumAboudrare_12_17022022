@@ -17,6 +17,8 @@ import UserAverageSessions from "../../Components/Charts/UserAverageSessions";
 import UserPerformance from "../../Components/Charts/UserPerformance";
 import UserScore from "../../Components/Charts/UserScore";
 
+import Loader from "../../assets/img/loader.svg";
+
 const Dashboard = () => {
   let { id } = useParams();
 
@@ -45,6 +47,12 @@ const Dashboard = () => {
     getUserData();
   }, [id]);
 
+  const isError =
+    userInfosData &&
+    userActivityData &&
+    userAverageSessionsData &&
+    userPerformanceData === undefined;
+
   // console.log("user infos", userInfosData.keyData);
   // console.log("Activity", userActivityData);
   // console.log("Average Sessions", userAverageSessionsData);
@@ -68,13 +76,22 @@ const Dashboard = () => {
           </ChartsContainer>
         </>
       ) : (
-        <div>Chargement des données en cours...</div>
+        <>
+          {isError ? (
+            `🚨 Une erreur s'est produite, les données n'ont pas pu être récupérées 🚨`
+          ) : (
+            <div>
+              <Load src={Loader} alt="Chargement des données en cours..." />
+              Chargement des données en cours...
+            </div>
+          )}{" "}
+        </>
       )}
     </Main>
   );
 };
 
-const Main = styled.section`
+const Main = styled.main`
   width: 100%;
   padding: 70px 0 0 107px;
 `;
@@ -91,5 +108,9 @@ const Charts = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+
+const Load = styled.img`
+margin-right: 10px;
+`
 
 export default Dashboard;

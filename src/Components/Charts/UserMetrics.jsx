@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
+import propTypes from 'prop-types';
+
 import SingleStat from "./SingleStat";
 
+/**
+ * This component will create all the stats components on the sidebar right
+ * @param {Object} params
+ * @returns {JSX}
+ */
 const UserMetrics = ({ dataMetrics }) => {
 
   const objTOarray = (obj) => Object.entries(obj);
@@ -25,5 +32,9 @@ const SideBar = styled.ul`
   align-items: stretch;
   justify-content: space-between;
 `;
+
+UserMetrics.propTypes = {
+	dataMetrics: propTypes.object,
+};
 
 export default UserMetrics;

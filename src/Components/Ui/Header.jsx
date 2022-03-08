@@ -2,13 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import LogoSVG from "../../assets/img/logo.svg"
 
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <HeaderTop>
       <Logo src={LogoSVG} alt="Logo de SportSee" />
       <NavTop>
         <ul>
-          <li>Accueil</li>
+          <li><Link to="/">Accueil</Link></li>
           <li>Profil</li>
           <li>Réglage</li>
           <li>Communauté</li>
@@ -41,6 +43,10 @@ const NavTop = styled.nav`
     list-style: none;
     li {
         cursor: pointer;
+
+        a {
+          color: #ffffff;
+        }
     }
   }
 `;
