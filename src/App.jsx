@@ -4,6 +4,11 @@ import AsideLeft from "./Components/Ui/AsideNav/AsideLeft";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 
+/**
+ * * APP > displayed Homepage
+ * Outlet return page component :
+ * Home, Dashboard and 404
+ */
 function App() {
   return (
     <>
@@ -15,6 +20,10 @@ function App() {
     </>
   );
 }
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Main = styled.main`
   display: flex;

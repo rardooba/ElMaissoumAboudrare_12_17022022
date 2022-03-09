@@ -15,6 +15,10 @@ const NavIcon = ({path, title, alt, src}) => {
     );
 };
 
+/*----------------*\
+        CSS
+\*----------------*/
+
 const LiICON = styled.li`
   height: 64px;
   width: 64px;

@@ -20,6 +20,10 @@ const Header = () => {
   );
 };
 
+/*----------------*\
+        CSS
+\*----------------*/
+
 const HeaderTop = styled.header`
   background: black;
   width: 100vw;

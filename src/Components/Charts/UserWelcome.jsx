@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 import propTypes from 'prop-types';
 
-
+/** 
+ * @param {Object[]} users 
+ * @param {Object.<firstName: String>} users[].userInfos.firstName
+ * @returns {JSX}
+ */
 const UserWelcome = ({dataName}) => {
   return (
     <Header>
@@ -14,6 +18,10 @@ const UserWelcome = ({dataName}) => {
     </Header>
   );
 };
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Header = styled.header`
   h1 {

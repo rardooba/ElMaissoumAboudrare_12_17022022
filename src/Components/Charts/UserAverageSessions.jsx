@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import propTypes from 'prop-types';
 
+//* RECHARTS LIB
 import {
   LineChart,
   Line,
@@ -13,14 +14,22 @@ import {
 } from "recharts";
 
 /**
- * This will render the session average duration graph
- * @param {Object} params
- * @param {Array} params.data
+ * Display the session average duration graph
+ * @param {Object[]} sessionsList
+ * @param {Object[]} sessionsList[].sessions[]
+ * @param {Number} sessionsList[].day
+ * @param {Number} sessionsList[].sessionLength
  * @returns {JSX}
  */
 const UserAverageSessions = ({ dataSessions }) => {
   // Format day of the week
   const daysWeek = { 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S", 7: "D" };
+
+  /**
+   * @param {Object} params
+   * @param {Number} params.item index
+   * @returns {String} Day ex: "L"
+   */
   const formatDay = (item) => daysWeek[item];
 
   return (
@@ -98,6 +107,9 @@ const CustomTooltip = ({ active, payload }) =>
     </ToolTipLabel>
   ) : null;
 
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Figure = styled.figure`
   width: 258px;

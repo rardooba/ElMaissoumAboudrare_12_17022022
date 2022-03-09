@@ -91,6 +91,10 @@ const Dashboard = () => {
   );
 };
 
+/*----------------*\
+        CSS
+\*----------------*/
+
 const Main = styled.main`
   width: 100%;
   padding: 70px 0 0 107px;

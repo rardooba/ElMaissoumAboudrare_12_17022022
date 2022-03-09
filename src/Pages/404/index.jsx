@@ -15,6 +15,10 @@ const NotFound404 = () => {
   );
 };
 
+/*----------------*\
+        CSS
+\*----------------*/
+
 const ERRORContent = styled.section`
   width: 100%;
   height: 100vh;

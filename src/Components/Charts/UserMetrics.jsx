@@ -6,15 +6,14 @@ import propTypes from 'prop-types';
 import SingleStat from "./SingleStat";
 
 /**
- * This component will create all the stats components on the sidebar right
- * @param {Object} params
+ * Display the stats components on the right sidebar 
+ * @param {Array.<Object.<Number>>} users[].keyData{}
  * @returns {JSX}
  */
 const UserMetrics = ({ dataMetrics }) => {
 
+  //Format Object to Array > [['calorieCount', 1930], Array(2), Array(2), Array(2)]
   const objTOarray = (obj) => Object.entries(obj);
-
-  //console.log(objTOarray(dataMetrics));
 
   return (
     <SideBar>
@@ -24,6 +23,10 @@ const UserMetrics = ({ dataMetrics }) => {
     </SideBar>
   );
 };
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const SideBar = styled.ul`
   min-width: 258px;

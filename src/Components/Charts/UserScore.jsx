@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 import propTypes from 'prop-types';
 
+//* RECHARTS LIB
 import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from "recharts";
 
 /**
- * This will display the user score graph
- * @param {Object} params
- * @param {Number} params.todayScore
+ * Display the user score graph
+ * @param {Object[]} users
+ * @param {Number} users[].todayScore
  * @returns {JSX}
  */
 const UserScore = ({dataScore}) => {
@@ -70,6 +71,10 @@ const CustomLegend = ({ payload }) => (
     <Desc>objectif</Desc>
   </LegendCustom>
 );
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Figure = styled.figure`
   background: #fbfbfb;

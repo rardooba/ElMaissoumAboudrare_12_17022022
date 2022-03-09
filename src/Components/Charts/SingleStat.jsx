@@ -9,14 +9,21 @@ import Glucid from '../../assets/img/apple.svg';
 import Lipid from '../../assets/img/cheeseburger.svg';
 
 /**
- * This will display each statistic component on the right side with the left icon/color
+ * Display single statistic component on the right sidebar + icon image + dynamic background icon color
  * @param {Object} params
  * @param {String} params.type
- * @param {Number} params.val
+ * @param {Number} params.value
  * @returns {JSX}
  */
 const SingleStat = ({type, value}) => {
 
+	/**
+	 * Dynamic retrieval of information by type
+	 * @returns {Object} params
+	 * @returns {String} params.label name
+	 * @returns {String} params.img icon image .svg
+	 * @returns {String} params.bg icon background color
+	 */
     const keyData = () => {
 		switch (type) {
 			case 'calorieCount':
@@ -32,6 +39,7 @@ const SingleStat = ({type, value}) => {
 		}
 	};
 
+	//Add a comma to every hundred
 	value = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(value)
 
     return (
@@ -46,6 +54,10 @@ const SingleStat = ({type, value}) => {
 		</Statistic>
     );
 };
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Statistic = styled.div`
 	background: #fbfbfb;

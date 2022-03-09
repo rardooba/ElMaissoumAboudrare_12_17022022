@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import propTypes from 'prop-types';
 
+//* RECHARTS LIB
 import {
   BarChart,
   Bar,
@@ -16,8 +17,7 @@ import {
 
 /**
  * This will render the activity bar chart
- * @param {Object} params
- * @param {Array} params.sessions
+ * @param {Array.<{day: String, kilogram: Number, calories: Number}>} 
  * @returns {JSX}
  */
 const UserActivity = ({dataActivity}) => {
@@ -97,6 +97,10 @@ const CustomTooltip = ({ active, payload }) =>
       <div>{`${payload[1].value} kCal`}</div>
     </TooltipBlock>
   ) : null;
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Figure = styled.figure`
   height: 320px;

@@ -1,7 +1,8 @@
 /**
- * Data use for local testing
+ * Data mocked for local testing
  */
 
+//*--------------------------------------------------------------------->  USERS
 const users = [
   {
     id: 12,
@@ -35,6 +36,7 @@ const users = [
   },
 ];
 
+//*--------------------------------------------------------------------->  ACTIVITIES
 const activities = [
   {
     userId: 12,
@@ -118,6 +120,7 @@ const activities = [
   },
 ];
 
+//*--------------------------------------------------------------------->  SESSIONS LIST
 const sessionsList = [
   {
     userId: 12,
@@ -187,6 +190,7 @@ const sessionsList = [
   },
 ];
 
+//*--------------------------------------------------------------------->  PERFORMANCES
 const performances = [
   {
     userId: 12,

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import NavIcon from "./NavIcon";
 
+// IMG .SVG
 import Meditation from "../../../assets/img/meditation.svg";
 import Swim from "../../../assets/img/swim.svg";
 import Bike from "../../../assets/img/bike.svg";
@@ -10,6 +11,12 @@ import Gym from "../../../assets/img/dumbbell.svg";
 
 const SideBarRight = () => {
 
+  /**
+   * Get current year
+   * @returns {String} current year ex: "2022"
+   * @author Rardooba 
+   * @version 1.0
+   */
   const dynamicDateCopyright = () => {
     return new Date().toLocaleDateString("fr-FR", {
       year: "numeric",
@@ -28,6 +35,10 @@ const SideBarRight = () => {
     </AsideLeft>
   );
 };
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const AsideLeft = styled.aside`
   background: black;

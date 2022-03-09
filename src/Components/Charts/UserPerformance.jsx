@@ -3,18 +3,23 @@ import styled from 'styled-components';
 
 import propTypes from 'prop-types';
 
+//* RECHARTS LIB
 import { Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 
 /**
  * This componnent will render the Preformance graph
- * @param {Object} params
- * @param {Object} params.kind
- * @param {Array} params.data
+ * @param {Object[]} performances
+ * @param {Object.<index: String>} performances[].kind
+ * @param {Array.<{value: Number, kind: Number}>} performances[].data
  * @returns {JSX}
  */
 const UserPerformance = ({dataPerformance}) => {
 
-
+	/**
+	 * Translate labels in french
+	 * @param {Number} id 
+	 * @returns {String} All labels in french
+	 */
 	const englishTOfrench = id => {
 		const LabelFR = {
 			cardio: 'Cardio',
@@ -28,7 +33,7 @@ const UserPerformance = ({dataPerformance}) => {
 		return LabelFR[dataPerformance.kind[id]];
 	}
 
-
+	
     return (
         <Figure>
 			<ResponsiveContainer width="100%" height="100%">
@@ -43,6 +48,10 @@ const UserPerformance = ({dataPerformance}) => {
 		</Figure>
     );
 };
+
+/*----------------*\
+        CSS
+\*----------------*/
 
 const Figure = styled.figure`
 	background: #282d30;
