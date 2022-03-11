@@ -17,7 +17,9 @@ import {
 
 /**
  * This will render the activity bar chart
- * @param {Array.<{day: String, kilogram: Number, calories: Number}>} 
+ * @param {Object} activities user's daily activity statistics
+ * @param {Number} activities.userId User's id
+ * @param {Array} activities.sessions user's sessions data
  * @returns {JSX}
  */
 const UserActivity = ({dataActivity}) => {
@@ -85,10 +87,10 @@ const UserActivity = ({dataActivity}) => {
 
 /**
  * Show custom label on the graph
- * @param {Object} params
- * @param {Boolean} params.active
- * @param {Array} params.payload
- * @return {JSX || null}
+ * @param {Object} params Custom Tooltip
+ * @param {Boolean} params.active If set true, the tooltip is displayed. If set false, the tooltip is hidden, usually calculated internally.
+ * @param {Array} params.payload The source data of the content to be displayed in the tooltip, usually calculated internally.
+ * @returns {JSX | null}
  */
 const CustomTooltip = ({ active, payload }) =>
   active ? (

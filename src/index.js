@@ -1,3 +1,9 @@
+/**
+ * @file index.js is the render file of the application
+ * @author Rardooba
+ * @see <a href="https://github.com/rardooba/ElMaissoumAboudrare_12_17022022" target="_blank">Repo Git</a>
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,15 +29,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-/*  
-TODO >>
-
-1. PropType OK
-2. JSDoc + course 
-3. Chart design + review Recharts (How I use it ?)
-4. Refactory codeBase
-5. LifeCycle in React
-6. Routes In User Storie
-
-*/

@@ -8,8 +8,8 @@ import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from "recharts";
 
 /**
  * Display the user score graph
- * @param {Object[]} users
- * @param {Number} users[].todayScore
+ * @param {Object} users User's infos
+ * @param {Number} users.todayScore User's day score
  * @returns {JSX}
  */
 const UserScore = ({dataScore}) => {
@@ -59,10 +59,10 @@ const UserScore = ({dataScore}) => {
 
 /**
  * Show custom label on the graph
- * @param {Object} params
- * @param {Boolean} params.active
- * @param {Array} params.payload
- * @return {JSX || null}
+ * @param {Object} params Custom Legend
+ * @param {Boolean} params.active isActive (true or false)
+ * @param {Array} params.payload The source data of the content to be displayed in the legend, usually calculated internally.
+ * @returns {JSX | null}
  */
 const CustomLegend = ({ payload }) => (
   <LegendCustom>

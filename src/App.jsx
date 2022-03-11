@@ -6,8 +6,7 @@ import { Outlet } from "react-router-dom";
 
 /**
  * * APP > displayed Homepage
- * Outlet return page component :
- * Home, Dashboard and 404
+ * * Outlet > return page component : Home, Dashboard and 404
  */
 function App() {
   return (

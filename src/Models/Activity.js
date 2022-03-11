@@ -8,7 +8,9 @@
  */
 class Activity {
   /**
-   * @param {Object.<userId: Number, sessions: Array>}
+   * @param {Object} activities user's daily activity statistics
+   * @param {Number} activities.id user's id
+   * @param {Array} activities.sessions user's sessions data (day, kilogram, calories)
    */
   constructor({ id, sessions }) {
     this.userId = id;

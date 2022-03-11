@@ -1,3 +1,4 @@
+//@ts-check
 /*----------------------*\
         OBJECT MODEL
 \*----------------------*/
@@ -8,7 +9,10 @@
  */
 class Performance {
   /**
-   * @param {Object.<id: Number, kind: Object, data: Array>}
+   * @param {Object} performances User's performances metrics
+   * @param {Number} performances.userId User's id
+   * @param {Object} performances.kind Type of performances (cardio, energy...)
+   * @param {Array} performances.data User Performance Metrics data
    */
   constructor({ userId, kind, data }) {
     this.id = userId;

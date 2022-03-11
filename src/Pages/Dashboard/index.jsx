@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -27,32 +27,38 @@ const Dashboard = () => {
   const [userAverageSessionsData, setUserAverageSessionsData] = useState({});
   const [userPerformanceData, setUserPerformanceData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getUserData = async () => {
-      const getUserOBJ = await getUser(parseInt(id));
-      const getActivityOBJ = await getActivity(parseInt(id));
-      const getAverageSessionsOBJ = await getAverageSessions(parseInt(id));
-      const getPerformanceOBJ = await getPerformance(parseInt(id));
+      try {
+        const getUserOBJ = await getUser(parseInt(id));
+        const getActivityOBJ = await getActivity(parseInt(id));
+        const getAverageSessionsOBJ = await getAverageSessions(parseInt(id));
+        const getPerformanceOBJ = await getPerformance(parseInt(id));
+  
+        if (parseInt(id) !== getUserOBJ.id) {
+          navigate("/user")
+        }
 
-      setUserInfosData(getUserOBJ);
-      setUserActivityData(getActivityOBJ);
-      setUserAverageSessionsData(getAverageSessionsOBJ);
-      setUserPerformanceData(getPerformanceOBJ);
+        setUserInfosData(getUserOBJ);
+        setUserActivityData(getActivityOBJ);
+        setUserAverageSessionsData(getAverageSessionsOBJ);
+        setUserPerformanceData(getPerformanceOBJ);
 
-      setIsLoaded(true);
-
-      //! besoin de clean ?
+  
+        setIsLoaded(true);
+      } catch(err) {
+        setIsError(true)
+        console.log("💥💀 we encounter an error while loading the data from API: 💨",err);
+      }
     };
     getUserData();
-  }, [id]);
+  }, [id, navigate]);
 
-  const isError =
-    userInfosData &&
-    userActivityData &&
-    userAverageSessionsData &&
-    userPerformanceData === undefined;
-
+  //* Show API Data in console
   // console.log("user infos", userInfosData.keyData);
   // console.log("Activity", userActivityData);
   // console.log("Average Sessions", userAverageSessionsData);
@@ -78,13 +84,13 @@ const Dashboard = () => {
       ) : (
         <>
           {isError ? (
-            `🚨 Une erreur s'est produite, les données n'ont pas pu être récupérées 🚨`
+            navigate('/user')
           ) : (
             <div>
               <Load src={Loader} alt="Chargement des données en cours..." />
               Chargement des données en cours...
             </div>
-          )}{" "}
+          )}
         </>
       )}
     </Main>

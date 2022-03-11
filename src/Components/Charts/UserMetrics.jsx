@@ -7,7 +7,12 @@ import SingleStat from "./SingleStat";
 
 /**
  * Display the stats components on the right sidebar 
- * @param {Array.<Object.<Number>>} users[].keyData{}
+ * @param {Object} users User's infos
+ * @param {Object} users.keyData User's body metrics
+ * @param {Number} users.keyData.calorieCount Consumed amount of Calories
+ * @param {Number} users.keyData.proteinCount Consumed amount of Protein
+ * @param {Number} users.keyData.carbohydrateCount Consumed amount of Carbohydrate
+ * @param {Number} users.keyData.lipidCount Consumed amount of Lipid
  * @returns {JSX}
  */
 const UserMetrics = ({ dataMetrics }) => {

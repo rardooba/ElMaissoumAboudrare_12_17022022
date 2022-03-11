@@ -1,3 +1,4 @@
+//@ts-check
 /*----------------------*\
         OBJECT MODEL
 \*----------------------*/
@@ -8,7 +9,9 @@
  */
 class SessionAverage {
   /**
-   * @param {Object.<userId: Number, sessions: Array>}
+   * @param {Object} sessionsList User's sessions average
+   * @param {Number} sessionsList.userId User's id
+   * @param {Array} sessionsList.sessions User's sessions average data (day, session Length)
    */
   constructor({ userId, sessions }) {
     this.userId = userId;

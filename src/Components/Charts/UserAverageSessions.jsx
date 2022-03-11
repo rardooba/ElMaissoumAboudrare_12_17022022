@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 //* RECHARTS LIB
 import {
@@ -15,10 +15,10 @@ import {
 
 /**
  * Display the session average duration graph
- * @param {Object[]} sessionsList
- * @param {Object[]} sessionsList[].sessions[]
- * @param {Number} sessionsList[].day
- * @param {Number} sessionsList[].sessionLength
+ * @param {Object} sessionsList User's sessions average
+ * @param {Array} sessionsList.sessions User's sessions average data
+ * @param {Number} sessionsList.day The day of session
+ * @param {Number} sessionsList.sessionLength Session's duration
  * @returns {JSX}
  */
 const UserAverageSessions = ({ dataSessions }) => {
@@ -44,10 +44,10 @@ const UserAverageSessions = ({ dataSessions }) => {
           height={186}
           data={dataSessions}
           margin={{
-            top: 5,
+            top: 0,
             right: 10,
             left: 10,
-            bottom: 5,
+            bottom: 0,
           }}
         >
           <XAxis
@@ -68,13 +68,7 @@ const UserAverageSessions = ({ dataSessions }) => {
               (dataMax) => dataMax * 2,
             ]}
           />
-          <Tooltip
-            content={<CustomTooltip />}
-            cursor={{
-              stroke: "rgba(0, 0, 0, 0.2)",
-              strokeWidth: 50,
-            }}
-          />
+          <Tooltip content={<CustomTooltip />} cursor={<CustomHover />} />
           <Line
             type="monotone"
             dataKey="sessionLength"
@@ -95,10 +89,10 @@ const UserAverageSessions = ({ dataSessions }) => {
 
 /**
  * Show custom label on the graph
- * @param {Object} params
- * @param {Boolean} params.active
- * @param {Array} params.payload
- * @return {JSX || null}
+ * @param {Object} params Custom Tooltip
+ * @param {Boolean} params.active If set true, the tooltip is displayed. If set false, the tooltip is hidden, usually calculated internally.
+ * @param {Array} params.payload The source data of the content to be displayed in the tooltip, usually calculated internally.
+ * @returns {JSX | null}
  */
 const CustomTooltip = ({ active, payload }) =>
   active ? (
@@ -106,6 +100,33 @@ const CustomTooltip = ({ active, payload }) =>
       <div>{payload[0].value} min</div>
     </ToolTipLabel>
   ) : null;
+
+/**
+ * Show custom rect on the graph
+ * @param {Object} params Custom Tooltip
+ * @param {Array} params.points Get cursor position
+ * @param {Number} params.points[].x Position x
+ * @returns {JSX | null}
+ */
+const CustomHover = ({ points }) => {
+  return (
+    <rect
+      x={points[0].x}
+      y="0"
+      height="238"
+      width="300"
+      fill="rgba(0, 0, 0, 0.2)"
+    />
+  );
+};
+
+/* 
+* Other custom rect on the graph in Tooltip
+  cursor={{
+    stroke: "rgba(0, 0, 0, 0.2)",
+    strokeWidth: 50,
+  }}
+*/
 
 /*----------------*\
         CSS
@@ -140,13 +161,17 @@ const ToolTipLabel = styled.div`
   font-size: 15px;
 `;
 
+// const ToolTipRect = styled.rect`
+//   fill: black;
+// `;
+
 UserAverageSessions.propTypes = {
-	dataSessions: propTypes.array.isRequired,
+  dataSessions: propTypes.array.isRequired,
 };
 
 CustomTooltip.propTypes = {
-	active: propTypes.bool,
-	payload: propTypes.array,
+  active: propTypes.bool,
+  payload: propTypes.array,
 };
 
 export default UserAverageSessions;

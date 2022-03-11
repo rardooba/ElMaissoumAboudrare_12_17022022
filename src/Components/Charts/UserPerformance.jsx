@@ -8,9 +8,12 @@ import { Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, 
 
 /**
  * This componnent will render the Preformance graph
- * @param {Object[]} performances
- * @param {Object.<index: String>} performances[].kind
- * @param {Array.<{value: Number, kind: Number}>} performances[].data
+ * @param {Object} performances User's performances metrics
+ * @param {Object} performances.kind Type of performances
+ * @param {...String} performances.kind.index index of type of performances
+ * @param {Array} performances.data User Performance Metrics data
+ * @param {Number} performances.data[].value Performance Metrics data > value
+ * @param {Number} performances.data[].kind Performance Metrics data > kind
  * @returns {JSX}
  */
 const UserPerformance = ({dataPerformance}) => {

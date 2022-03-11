@@ -4,8 +4,9 @@ import styled from "styled-components";
 import propTypes from 'prop-types';
 
 /** 
- * @param {Object[]} users 
- * @param {Object.<firstName: String>} users[].userInfos.firstName
+ * @param {Object} users User's infos
+ * @param {Object} users.userInfos User's identity 
+ * @param {String} users.userInfos.firstName User's Firstname
  * @returns {JSX}
  */
 const UserWelcome = ({dataName}) => {

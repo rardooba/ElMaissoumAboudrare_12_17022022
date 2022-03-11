@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Charts/UserAverageSessions.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Charts/UserAverageSessions.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import styled from "styled-components";
+
+import propTypes from "prop-types";
+
+//* RECHARTS LIB
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+
+/**
+ * Display the session average duration graph
+ * @param {Object} sessionsList User's sessions average
+ * @param {Array} sessionsList.sessions User's sessions average data
+ * @param {Number} sessionsList.day The day of session
+ * @param {Number} sessionsList.sessionLength Session's duration
+ * @returns {JSX}
+ */
+const UserAverageSessions = ({ dataSessions }) => {
+  // Format day of the week
+  const daysWeek = { 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S", 7: "D" };
+
+  /**
+   * @param {Object} params
+   * @param {Number} params.item index
+   * @returns {String} Day ex: "L"
+   */
+  const formatDay = (item) => daysWeek[item];
+
+  return (
+    &lt;Figure>
+      &lt;HEADER>
+        &lt;h2>Durée moyenne des sessions&lt;/h2>
+      &lt;/HEADER>
+
+      &lt;ResponsiveContainer width="100%" height="100%">
+        &lt;LineChart
+          width={250}
+          height={186}
+          data={dataSessions}
+          margin={{
+            top: 0,
+            right: 10,
+            left: 10,
+            bottom: 0,
+          }}
+        >
+          &lt;XAxis
+            dataKey="day"
+            axisLine={false}
+            tickFormatter={formatDay}
+            tick={{ fontSize: 14, fill: "rgba(255, 255, 255, 0.5)" }}
+            tickLine={false}
+            tickMargin={10}
+            tickSize={0}
+            padding={{ left: 5, right: 5 }}
+            fontSize={12}
+          />
+          &lt;YAxis
+            hide
+            domain={[
+              (dataMin) => 0 - Math.abs(dataMin),
+              (dataMax) => dataMax * 2,
+            ]}
+          />
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
+            cursor={{
+                stroke: "rgba(0, 0, 0, 0.2)",
+                strokeWidth: 50,
+              }}
+          />
+          &lt;Line
+            type="monotone"
+            dataKey="sessionLength"
+            stroke="#fff"
+            strokeWidth={2}
+            dot={false}
+            activeDot={{
+              stroke: "rgba(255, 255, 255, 0.2)",
+              strokeWidth: 10,
+              r: 5,
+            }}
+          />
+        &lt;/LineChart>
+      &lt;/ResponsiveContainer>
+    &lt;/Figure>
+  );
+};
+
+/**
+ * Show custom label on the graph
+ * @param {Object} params Custom Tooltip
+ * @param {Boolean} params.active If set true, the tooltip is displayed. If set false, the tooltip is hidden, usually calculated internally.
+ * @param {Array} params.payload The source data of the content to be displayed in the tooltip, usually calculated internally.
+ * @returns {JSX | null}
+ */
+const CustomTooltip = ({ active, payload }) =>
+  active ? (
+    &lt;ToolTipLabel>
+      &lt;div>{payload[0].value} min&lt;/div>
+    &lt;/ToolTipLabel>
+  ) : null;
+
+// const CustomHover = ({ active, points }) =>
+//   active ? (
+//       &lt;ToolTipRect x="10" y="0" width="210" height="238">{points}&lt;/ToolTipRect>
+//   ) : null;
+
+  // cursor={{
+  //   stroke: "rgba(0, 0, 0, 0.2)",
+  //   strokeWidth: 50,
+  // }}
+/*----------------*\
+        CSS
+\*----------------*/
+
+const Figure = styled.figure`
+  width: 258px;
+  height: 236px;
+  border-radius: 5px;
+  background: #ff0000;
+  position: relative;
+`;
+
+const HEADER = styled.header`
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 29px 60px 0 29px;
+    line-height: 24px;
+    color: #fff;
+    opacity: 0.5;
+  }
+`;
+
+const ToolTipLabel = styled.div`
+  padding: 10px 5px;
+  background: #f1f1f1;
+  font-size: 15px;
+`;
+
+// const ToolTipRect = styled.rect`
+//   fill: black;
+// `;
+
+UserAverageSessions.propTypes = {
+  dataSessions: propTypes.array.isRequired,
+};
+
+CustomTooltip.propTypes = {
+  active: propTypes.bool,
+  payload: propTypes.array,
+};
+
+export default UserAverageSessions;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">P12: Documentation</a></h2><h3>Classes</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="Performance.html">Performance</a></li><li><a href="SessionAverage.html">SessionAverage</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomLegend">CustomLegend</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSessions">getAverageSessions</a></li><li><a href="global.html#getIndexMockedData">getIndexMockedData</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#SingleStat">SingleStat</a></li><li><a href="global.html#stringTOboolean">stringTOboolean</a></li><li><a href="global.html#UserActivity">UserActivity</a></li><li><a href="global.html#UserAverageSessions">UserAverageSessions</a></li><li><a href="global.html#UserMetrics">UserMetrics</a></li><li><a href="global.html#UserPerformance">UserPerformance</a></li><li><a href="global.html#UserScore">UserScore</a></li><li><a href="global.html#UserWelcome">UserWelcome</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Mar 11 2022 09:50:34 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

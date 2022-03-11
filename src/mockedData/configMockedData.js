@@ -1,11 +1,12 @@
 
-//* Here is the environment variable configuration
+/**
+ * @file mockedData/configMockedData.js here is the environment variable configuration
+ */
 
 /**
- * Convert string = 'true' to boolean = true
- * @param {String} env 
- * @returns {Boolean} 
- * @author Rardooba
+ * Convert string to boolean ex: 'true' > true
+ * @param {String} env Value of environment variable
+ * @returns {Boolean} true or false converted
  * @version 1.0
  */
 const stringTOboolean = (env) => {

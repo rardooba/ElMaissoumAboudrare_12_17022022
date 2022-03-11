@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Charts/UserActivity.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Charts/UserActivity.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import React from "react";
+import styled from "styled-components";
+
+import propTypes from 'prop-types';
+
+//* RECHARTS LIB
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
+
+
+/**
+ * This will render the activity bar chart
+ * @param {Object} activities user's daily activity statistics
+ * @param {Number} activities.userId User's id
+ * @param {Array} activities.sessions user's sessions data
+ * @returns {JSX}
+ */
+const UserActivity = ({dataActivity}) => {
+  return (
+    &lt;Figure>
+      &lt;Legend>
+        &lt;h2>Activité quotidienne&lt;/h2>
+        &lt;ul>
+          &lt;li>Poids (kg)&lt;/li>
+          &lt;li>Calories brûlées (kCal)&lt;/li>
+        &lt;/ul>
+      &lt;/Legend>
+      &lt;ResponsiveContainer width="100%" height="80%">
+        &lt;BarChart data={dataActivity.sessions}>
+          &lt;CartesianGrid strokeDasharray="2" vertical={false} />
+          &lt;XAxis
+            dataKey="day"
+            tickMargin={16}
+            tickFormatter={(day) => new Date(day).getDate()}
+            tickSize={0}
+            minTickGap={30}
+          />
+          &lt;YAxis
+            yAxisId="kilogram"
+            orientation="right"
+            tickMargin={40}
+            tickSize={0}
+            axisLine={false}
+            domain={["dataMin-5", "dataMax+10"]}
+            interval={"preserveEnd"}
+            tickCount={3}
+          />
+          &lt;YAxis
+            yAxisId="calories"
+            hide
+            orientation="right"
+            domain={["dataMin-150", "dataMax+0"]}
+          />
+          &lt;Tooltip content={&lt;CustomTooltip />} />
+          &lt;Bar
+            yAxisId="kilogram"
+            dataKey="kilogram"
+            fill="#282D30"
+            barSize={10}
+            radius={[5, 5, 0, 0]}
+          />
+          &lt;Bar
+            yAxisId="calories"
+            dataKey="calories"
+            fill="transparent"
+            barSize={3}
+          />
+          &lt;Bar
+            yAxisId="calories"
+            dataKey="calories"
+            fill="#E60000"
+            barSize={10}
+            radius={[5, 5, 0, 0]}
+          />
+        &lt;/BarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/Figure>
+  );
+};
+
+/**
+ * Show custom label on the graph
+ * @param {Object} params Custom Tooltip
+ * @param {Boolean} params.active If set true, the tooltip is displayed. If set false, the tooltip is hidden, usually calculated internally.
+ * @param {Array} params.payload The source data of the content to be displayed in the tooltip, usually calculated internally.
+ * @returns {JSX | null}
+ */
+const CustomTooltip = ({ active, payload }) =>
+  active ? (
+    &lt;TooltipBlock>
+      &lt;div>{`${payload[0].value} kg`}&lt;/div>
+      &lt;div>{`${payload[1].value} kCal`}&lt;/div>
+    &lt;/TooltipBlock>
+  ) : null;
+
+/*----------------*\
+        CSS
+\*----------------*/
+
+const Figure = styled.figure`
+  height: 320px;
+  width: 100%;
+  background: #fbfbfb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+
+  .recharts-responsive-container {
+    margin-top: auto;
+  }
+`;
+
+const Legend = styled.div`
+  display: flex;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 15px;
+    li {
+      font-size: 14px;
+      color: #74798c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    li:before {
+      display: block;
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+    }
+    li:first-child {
+      &amp;:before {
+        background-color: black;
+      }
+    }
+    li:last-child {
+      &amp;:before {
+        background-color: red;
+      }
+    }
+  }
+`;
+
+const TooltipBlock = styled.div`
+  background: #e60000;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 15px 10px;
+  box-shadow: -8px 5px 8px -2px rgba(0, 0, 0, 0.3);
+
+  div:first-child {
+    margin-bottom: 10px;
+  }
+`;
+
+UserActivity.propTypes = {
+	dataActivity: propTypes.object,
+};
+
+CustomTooltip.propTypes = {
+	active: propTypes.bool,
+	payload: propTypes.array,
+};
+
+
+export default UserActivity;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">P12: Documentation</a></h2><h3>Classes</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="Performance.html">Performance</a></li><li><a href="SessionAverage.html">SessionAverage</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomLegend">CustomLegend</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSessions">getAverageSessions</a></li><li><a href="global.html#getIndexMockedData">getIndexMockedData</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#SingleStat">SingleStat</a></li><li><a href="global.html#stringTOboolean">stringTOboolean</a></li><li><a href="global.html#UserActivity">UserActivity</a></li><li><a href="global.html#UserAverageSessions">UserAverageSessions</a></li><li><a href="global.html#UserMetrics">UserMetrics</a></li><li><a href="global.html#UserPerformance">UserPerformance</a></li><li><a href="global.html#UserScore">UserScore</a></li><li><a href="global.html#UserWelcome">UserWelcome</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Mar 11 2022 09:50:34 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

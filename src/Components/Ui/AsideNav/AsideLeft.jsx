@@ -14,7 +14,6 @@ const SideBarRight = () => {
   /**
    * Get current year
    * @returns {String} current year ex: "2022"
-   * @author Rardooba 
    * @version 1.0
    */
   const dynamicDateCopyright = () => {
