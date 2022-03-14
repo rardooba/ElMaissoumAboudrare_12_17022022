@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const NotFound404 = () => {
+
+  //! Attention ! In order to remove the 'Glitch effect' there is a treatment of the prefers-reduced-motion carried out in the Css Line 178
+
   return (
     <ERRORContent>
       <div class="glitch-bloc">
@@ -170,6 +173,18 @@ const ERRORContent = styled.section`
     }
     100% {
       transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .glitchedAnim:nth-child(2) {
+      animation-name: dissolve;
+    }
+    .glitchedAnim:nth-child(3) {
+      animation-name: dissolve;
+    }
+    .glitchedAnim:nth-child(4) {
+      animation-name: dissolve;
     }
   }
 `;

@@ -1,4 +1,3 @@
-//@ts-check
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,9 +12,9 @@ import Lipid from '../../assets/img/cheeseburger.svg';
  * * Display single statistic component on the right sidebar 
  * * Add icon image
  * * Add dynamic background icon color
- * @param {Array} params Contains type and value of body metrics
- * @param {String} params[].type ex: Calorie count, protein count
- * @param {Number} params[].value ex: 1930kCal, 50g
+ * @param {Object} params Contains type and value of body metrics
+ * @param {String} params.type ex: Calorie count, protein count
+ * @param {Number} params.value ex: 1930kCal, 50g
  * @returns {JSX}
  */
 const SingleStat = ({type, value}) => {
@@ -23,9 +22,6 @@ const SingleStat = ({type, value}) => {
 	/**
 	 * Dynamic retrieval of information by type
 	 * @returns {Object} params
-	 * @returns {String} params.label name
-	 * @returns {String} params.img icon image .svg
-	 * @returns {String} params.bg icon background color
 	 */
     const keyData = () => {
 		switch (type) {
