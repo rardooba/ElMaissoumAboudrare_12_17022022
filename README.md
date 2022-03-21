@@ -6,7 +6,7 @@ MISSION > Build a user profile page in React, fetching data from a NodeJS extern
 
 ## Useful links
 - [Repository](https://github.com/rardooba/ElMaissoumAboudrare_12_17022022) 📖
-- Documentation 📑
+- [Documentation](https://github.com/rardooba/ElMaissoumAboudrare_12_17022022/tree/main/docs) 📑
 - Figma [mock-up](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=1%3A2) 🖼️
 
 ## Let's get started !
