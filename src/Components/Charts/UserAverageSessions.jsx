@@ -120,14 +120,6 @@ const CustomHover = ({ points }) => {
   );
 };
 
-/* 
-* Other custom rect on the graph in Tooltip
-  cursor={{
-    stroke: "rgba(0, 0, 0, 0.2)",
-    strokeWidth: 50,
-  }}
-*/
-
 /*----------------*\
         CSS
 \*----------------*/
@@ -166,7 +158,7 @@ const ToolTipLabel = styled.div`
 // `;
 
 UserAverageSessions.propTypes = {
-  dataSessions: propTypes.array.isRequired,
+  dataSessions: propTypes.array.isRequired
 };
 
 CustomTooltip.propTypes = {

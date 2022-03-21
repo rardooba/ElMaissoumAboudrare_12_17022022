@@ -172,7 +172,10 @@ const TooltipBlock = styled.div`
 `;
 
 UserActivity.propTypes = {
-	dataActivity: propTypes.object,
+	dataActivity: propTypes.shape({
+    userId: propTypes.number,
+    sessions: propTypes.array
+  }),
 };
 
 CustomTooltip.propTypes = {

@@ -42,7 +42,7 @@ const SideBar = styled.ul`
 `;
 
 UserMetrics.propTypes = {
-	dataMetrics: propTypes.object,
+	dataMetrics: propTypes.objectOf(propTypes.number),
 };
 
 export default UserMetrics;
