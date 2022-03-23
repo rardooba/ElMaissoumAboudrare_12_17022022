@@ -21,7 +21,7 @@ This project was made with [Create React App](https://github.com/facebook/create
 ## Installation
 
 - Clone the [repository](https://github.com/rardooba/ElMaissoumAboudrare_12_17022022) 📖
-- cd name-of-cloned-repo
+- cd ElMaissoumAboudrare_12_17022022
 - install the node modules
 
 ### `npm install or yarn install`
